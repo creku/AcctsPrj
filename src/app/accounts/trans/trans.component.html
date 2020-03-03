@@ -1,0 +1,26 @@
+<table class="table table-sm table-striped" style="border-top: 0px snow; font-size: 12px;" >
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Desc</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let item of itemTrans;let ndx=index">
+          <tr >
+            <td>{{ndx+ 1}}</td>
+            <td >{{item.dateTime | date:"dd/MMM/yy hh:mm"}}</td>
+            <td>{{item.amount}}</td>
+            <td>{{item.desc}}</td>
+            <td><a class=""  (click)="editTransaction.showEditModal(item)">
+                <i class="fa fa-edit btn btn-outline-primary"></i> </a>
+            </td>
+          </tr>
+      </ng-container>
+    </tbody>
+</table>
+
+<app-edit-trans #editTransaction></app-edit-trans>

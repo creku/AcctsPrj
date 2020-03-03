@@ -1,0 +1,59 @@
+
+<div class="card">
+  <div class="container"  id="smb">
+    <div class="row">
+      <div class="col card" >
+            <table class="table table-sm table-striped" style="border-top: 0px snow;font-size: 12px;">
+              <thead>
+                <tr>
+                  <th width=10></th>
+                  <th>Account Name</th>
+                  <th>Total</th>
+                  <th width=10><a class="btn btn-success" (click)="newaccount.showModal()">
+                      <i class="fa fa-user"></i> </a>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let item of items;let idx=index">
+                    <tr> 
+                      <td (click)="accttrans.getTrans(item)">
+                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample{{idx}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                          <i class="fa fa-angle-double-down"></i> 
+                        </a>
+                      </td>
+                      <td>                   
+                        {{item.actName}}
+                     </td>
+                      <td>{{item.totAmount}}</td>
+                      <td><a class="btn btn-success" (click)="newtransaction.showModal(item)">
+                          <i class="fa fa-plus-square"></i> </a>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="4">
+                        <div class="collapse" id="collapseExample{{idx}}" data-parent="#smb">
+                          <app-trans #accttrans> </app-trans>
+                        </div> 
+                      </td>
+                    </tr>
+
+                </ng-container>
+              </tbody>
+            </table>
+      </div>
+
+                <!--
+      <div class="col-sm card">
+        <div class="collapse" id="collapseExample">
+           <app-trans #accttrans> </app-trans>
+        </div>
+      </div>
+         -->
+    </div>
+    
+  </div>
+</div>
+<app-newaccount #newaccount></app-newaccount>
+<app-add-trans #newtransaction></app-add-trans>
