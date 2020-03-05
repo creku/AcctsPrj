@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  firebaseConfig  : {
+  firebase: {
     apiKey: "AIzaSyDFKiNcyYYD5eagW8PqjmRHXUU58OnPM4I",
     authDomain: "simpleaccounts-db.firebaseapp.com",
     databaseURL: "https://simpleaccounts-db.firebaseio.com",
@@ -23,3 +23,4 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+

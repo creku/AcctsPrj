@@ -1,0 +1,22 @@
+warning: LF will be replaced by CRLF in src/app/app.module.ts.
+The file will have its original line endings in your working directory
+[1mdiff --git a/src/app/app.module.ts b/src/app/app.module.ts[m
+[1mindex ec6ed90..4dcfd41 100644[m
+[1m--- a/src/app/app.module.ts[m
+[1m+++ b/src/app/app.module.ts[m
+[36m@@ -8,6 +8,7 @@[m [mimport { NgbModule } from '@ng-bootstrap/ng-bootstrap';[m
+ [m
+ import { AngularFireModule } from '@angular/fire';[m
+ import { AngularFirestoreModule } from '@angular/fire/firestore';[m
+[32m+[m[32mimport { AngularFireAuthModule } from "@angular/fire/auth";[m
+ import { environment } from '../environments/environment';[m
+ import { ToastrModule } from 'ngx-toastr';[m
+ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';[m
+[36m@@ -26,6 +27,7 @@[m [mimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';[m
+     ToastrModule.forRoot(),[m
+     BrowserAnimationsModule,[m
+     FormsModule,[m
+[32m+[m[32m    AngularFireAuthModule[m
+   ],[m
+   providers: [],[m
+   bootstrap: [AppComponent][m
