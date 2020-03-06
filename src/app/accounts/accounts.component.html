@@ -1,9 +1,19 @@
+
 <div class="mat-card">
+  <div  *ngIf="authservice.userData as user">
+  <nav class="navbar navbar-light bg-light justify-content-between">
+        {{user.email}}
+    <form class="form-inline">
+      <button type="button" class="btn btn-outline-primary" (click)="SignOut()">Logout</button>
+    </form>
+  </nav>
+</div>
 <div class="card">
   <div class="container"  id="smb">
-    <div class="row">
+    <div class="row"> 
       <div class="col card" >
             <table class="table table-sm table-striped" style="border-top: 0px snow;font-size: 12px;">
+             
               <thead>
                 <tr>
                   <th width=10></th>
@@ -16,7 +26,7 @@
               </thead>
               <tbody>
                 <ng-container *ngFor="let item of items;let idx=index">
-                    <tr> 
+                    <tr [ngClass]="{'cus-neg' :!rfun.IsPostive(item.totAmount),'cus-pos':rfun.IsPostive(item.totAmount) }"> 
                       <td (click)="accttrans.getTrans(item)">
                         <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample{{idx}}" role="button" aria-expanded="false" aria-controls="collapseExample">
                           <i class="fa fa-angle-double-down"></i> 
@@ -25,7 +35,8 @@
                       <td>                   
                         {{item.actName}}
                      </td>
-                      <td>{{item.totAmount}}</td>
+                      <td>
+                        {{item.totAmount| number:'2.'}}</td>
                       <td><a class="btn btn-success" (click)="newtransaction.showModal(item)">
                           <i class="fa fa-plus-square"></i> </a>
                       </td>

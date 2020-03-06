@@ -55,10 +55,9 @@ export class AddTransComponent implements OnInit {
   onSubmit(form: NgForm) {
      //Adding opening balance Transaction.
      this.formData.account=this.acct;
-
-    this.transervice.addTrans(this.formData);
-    this.acctService.updateActBalance(this.acct.actName,this.acct.totAmount+this.formData.amount)
-    this.modalService.dismissAll();
+     this.transervice.addTrans(this.formData);
+     this.acctService.updateActBalance(this.acct.actName,this.acct.totAmount+this.formData.amount)
+     this.modalService.dismissAll();
    
   }
 

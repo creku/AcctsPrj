@@ -8,15 +8,18 @@
                <div class="col-md-8">
                 <form >
                   <div class="formGroup">
-                  <input  type="text" class="form-control mb-2" placeholder="Username" #userName required>
-                  </div>
-                  <div class="formGroup">
-                  <input  type="password" class="form-control mb-2" placeholder="Password" #userPassword required>
-                  </div>
-                  <div class="formGroup">
-                  <input type="button" class="btn btn-lg btn-primary btn-block mb-1" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">
                    
-                </div>
+                  <input  type="text" class="form-control mb-2" placeholder="Email @ Id" #userName required>
+                  <div *ngIf="userName.invalid && userName.touched" class="validation-error">Email required</div>
+                  </div>
+                  <div class="formGroup">
+                  <input  type="password" class="form-control mb-2" placeholder="Password" #userPassword required  minlength="4">
+                  <div *ngIf="userPassword.invalid && userPassword.touched" class="validation-error">Email required</div>
+                  </div>
+                  <div class="formGroup" >
+                   <button type="button" class="btn btn-sm btn-outline-primary" (click)="authService.SignIn(userName.value, userPassword.value)"
+                   >&nbsp;Log In&nbsp;</button>
+                  </div>
 
             
                 </form>

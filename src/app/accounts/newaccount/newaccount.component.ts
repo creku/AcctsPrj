@@ -6,6 +6,7 @@ import { Component, ViewChild, ElementRef, OnInit } from "@angular/core";
 import { Account } from './../../Shared/account.model';
 import { AccountService } from './../../Shared/account.service'
 
+
 @Component({
   selector: 'app-newaccount',
   templateUrl: './newaccount.component.html'

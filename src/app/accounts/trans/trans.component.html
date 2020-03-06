@@ -3,8 +3,9 @@
       <tr>
         <th>#</th>
         <th>Date</th>
-        <th>Amount</th>
         <th>Desc</th>
+        <th>Amount</th>
+        <th>Total</th>
         <th></th>
       </tr>
     </thead>
@@ -13,10 +14,11 @@
           <tr >
             <td>{{ndx+ 1}}</td>
             <td >{{item.dateTime | date:"dd/MMM/yy hh:mm"}}</td>
-            <td>{{item.amount}}</td>
             <td>{{item.desc}}</td>
-            <td><a class=""  (click)="editTransaction.showEditModal(item)">
-                <i class="fa fa-edit btn btn-outline-primary"></i> </a>
+            <td [ngClass]="{'cus-neg' :!rfun.IsPostive(item.amount),'cus-pos':rfun.IsPostive(item.amount) }">{{item.amount | number:'2.'}}</td>
+            <th [ngClass]="{'cus-neg' :!rfun.IsPostive(item.prevBal+item.amount),'cus-pos':rfun.IsPostive(item.prevBal+item.amount) }">{{item.prevBal+item.amount | number:'2.'}}</th>
+            <td width=10><a (click)="editTransaction.showEditModal(item)">
+                <i class="fa fa-edit btn btn-outline-danger" style="padding: 4px;"></i> </a>
             </td>
           </tr>
       </ng-container>

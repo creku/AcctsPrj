@@ -23,11 +23,12 @@ export class AuthService {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
+      localStorage.setItem('user', JSON.stringify(this.userData));
+       JSON.parse(localStorage.getItem('user'));
+        this.router.navigate(['accounts']);
       } else {
         localStorage.setItem('user', null);
-        JSON.parse(localStorage.getItem('user'));
+          JSON.parse(localStorage.getItem('user'));
       }
     })
   }

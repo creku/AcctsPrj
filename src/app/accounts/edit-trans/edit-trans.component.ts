@@ -53,6 +53,7 @@ export class EditTransComponent implements OnInit {
      
      if(this.prevAmt!=this.formData.amount || this.prevDesc!=this.formData.desc)
      {
+      
       this.transervice.editTrans(this.formData);
       this.acctService.updateActBalance(this.formData.account.id,(this.formData.account.totAmount+this.formData.amount-this.prevAmt));
       console.log('Transaction Updated');

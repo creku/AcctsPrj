@@ -64,4 +64,11 @@
         padding: 1px;
          border-top: 0px; 
     }
+
+    .btn:hover, .btn:focus, .btn:active {
+        color: rgb(245, 210, 13);
+        background-color: #b1d68a;
+        *background-color: #5a783b;
+    }
+    
     

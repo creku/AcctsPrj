@@ -8,7 +8,8 @@ interface parAccount {
 export class Trans{
     id?:string;
     dateTime?:number=Date.now();
-    amount?:number;
     desc?:string;
+    amount?:number;  
     account?:parAccount;
+    prevBal?:number;
   }
