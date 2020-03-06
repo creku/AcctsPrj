@@ -19,8 +19,7 @@ export class TransService {
   addTrans(trans:Trans)
   {
     let formatedTran=this.formatTran(trans);
-
-    this.db.collection('accounts').doc(trans.account.actName).collection('trans').add(formatedTran)
+     this.db.collection('accounts').doc(trans.account.actName).collection('trans').add(formatedTran)
     .then(function() {
         console.log("Transaction Added successfully");
     })
@@ -34,6 +33,8 @@ export class TransService {
   {
     
    let formatedTran=this.formatTran(trans);
+   delete formatedTran.dateTime;
+   formatedTran.desc=formatedTran.desc+'*';
     this.db.collection('accounts').doc(trans.account.actName).collection('trans').doc(trans.id).update(formatedTran)
     .then(function() {
         console.log("Transaction Edited successfully");
