@@ -2,7 +2,7 @@ import { TransService } from './../../Shared/trans.service';
 import { Trans } from './../../Shared/trans.model';
 import { NgForm } from '@angular/forms';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { Component, ViewChild, ElementRef, OnInit } from "@angular/core";
+import { Component, ViewChild, ElementRef, OnInit ,EventEmitter, Output,Input} from "@angular/core";
 import { Account } from './../../Shared/account.model';
 import { AccountService } from './../../Shared/account.service'
 
@@ -13,7 +13,11 @@ import { AccountService } from './../../Shared/account.service'
 })
 export class NewaccountComponent implements OnInit {
 
-  
+  @Output() childEvent = new EventEmitter();
+  createAccount(){
+     this.childEvent.emit(this.formData);
+  }
+
   formData: Account;
   modalOptions: NgbModalOptions;
   title = 'New Account';
@@ -22,7 +26,7 @@ export class NewaccountComponent implements OnInit {
   @ViewChild('content') modal: ElementRef;
 
   constructor(
-    private modalService: NgbModal , private acctService:AccountService,private transervice:TransService
+    private modalService: NgbModal 
   ) {
     this.modalOptions = {
       backdrop:'static',
@@ -43,6 +47,7 @@ export class NewaccountComponent implements OnInit {
       actName: '',
       totAmount: null,
     }
+    
   }
 
   showModal() {
@@ -53,7 +58,9 @@ export class NewaccountComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-   
+    
+    /*
+    this.formData.actName.toUpperCase().trim();
     this.acctService.addAccount(this.formData);
     //add openbalance Trans 
 
@@ -63,6 +70,8 @@ export class NewaccountComponent implements OnInit {
     this.trans.desc='Opening Balance';
     this.trans.account= this.formData ;
     this.transervice.addTrans(this.trans);
+    */
+   this.createAccount();
     this.modalService.dismissAll();
   
   }

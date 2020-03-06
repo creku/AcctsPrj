@@ -1,3 +1,5 @@
+import { Trans } from './../Shared/trans.model';
+import { TransService } from './../Shared/trans.service';
 import { LoginModule } from './../auth/login/login.module';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './../Shared/account.service';
@@ -8,6 +10,7 @@ import * as $ from 'jquery';
 import { ReuseFunctions } from '../Shared/reusefuntions';
 
 
+
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
@@ -16,9 +19,13 @@ import { ReuseFunctions } from '../Shared/reusefuntions';
 export class AccountsComponent implements OnInit {
 
   items:Account[];
-  
+  trans:Trans={};
  
-  constructor( public rfun:ReuseFunctions,private acctService:AccountService,private firestore: AngularFirestore,public authservice:AuthService) {
+  constructor( public rfun:ReuseFunctions,
+              private acctService:AccountService,
+              private firestore: AngularFirestore,
+              public authservice:AuthService,
+              private transervice:TransService) {
    }
 
   ngOnInit() {
@@ -38,9 +45,35 @@ export class AccountsComponent implements OnInit {
        $myGroup.on('show.bs.collapse', '.collapse', function() {
          $myGroup.find('.collapse.in').collapse('hide');
        });
+
+      
   }
 
-  
+  createAccount(acct:Account)
+  {
+    if(this.isAccountExists(acct.actName.toUpperCase().trim()))
+    {    
+      alert('Error -> Account already exists');
+     }
+     else
+     {
+      this.acctService.addAccount(acct);
+      //add openbalance Trans 
+      //Adding opening balance Transaction.
+      this.trans.amount= acct.totAmount;
+      this.trans.desc='Opening Balance';
+      this.trans.account= acct ;
+      this.transervice.addTrans(this.trans);
+     }
+}
+
+  isAccountExists(acctId)
+  {
+     if(this.items.find(x => x.id == acctId))  return true;
+     else return false;
+  }
+
+
   SignOut()
   {
     this.authservice.SignOut();

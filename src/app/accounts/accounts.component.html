@@ -66,6 +66,6 @@
     
   </div>
 </div>
-<app-newaccount #newaccount></app-newaccount>
+<app-newaccount (childEvent)="createAccount($event)" #newaccount></app-newaccount>
 <app-add-trans #newtransaction></app-add-trans>
 </div>
