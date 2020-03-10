@@ -33,6 +33,42 @@ export class AccountsComponent implements OnInit {
          $myGroup.find('.collapse.in').collapse('hide');
        });
 
+<<<<<<< Updated upstream
+=======
+      
+  }
+
+  createAccount(acct:Account)
+  {
+    if(this.isAccountExists(acct.actName.toUpperCase().trim()))
+    {    
+      alert('Error -> Account already exists');
+     }
+     else
+     {
+     
+      this.acctService.addAccount(acct);
+      //add openbalance Trans 
+      //Adding opening balance Transaction.
+      this.trans.amount= acct.totAmount;
+      this.trans.desc='Opening Balance';
+      this.trans.account= acct ;
+      this.transervice.addTrans(this.trans);
+     }
+}
+
+  isAccountExists(acctId)
+  {
+     if(this.items.find(x => x.id == acctId))  return true;
+     else return false;
+  }
+
+
+  SignOut()
+  {
+    this.authservice.SignOut();
+
+>>>>>>> Stashed changes
   }
 
   

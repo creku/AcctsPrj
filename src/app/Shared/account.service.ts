@@ -2,6 +2,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 //import { AngularFirestore } from '@angular/fire/firestore';
 import { Account } from './account.model'
+import { isDefined } from '@angular/compiler/src/util';
+import { isNull } from 'util';
 
 
 @Injectable({
@@ -27,17 +29,30 @@ export class AccountService {
     this.db.collection('accounts').doc(acct.actName).set(this.formatAccount(acct));
   }
 
-  updateActBalance(acctId:string,totAmount:number)
+  updateActBalance(acct:Account)
   {
-    this.db.collection('accounts').doc(acctId).update({totAmount:totAmount})
-    .then(function() {
-      console.log(acctId+" Record updated");
-    });
+    
+    this.db.collection('accounts').doc(acct.actName).update({totAmount:acct.totAmount});
+
   }
+
+  updateActCommission(acct:Account)
+  {
+
+       this.db.collection('accounts').doc(acct.actName).update({totAmount:acct.totAmount,
+                                                              comsRate:acct.comsRate      });
+
+  }
+
+
+
 
   formatAccount(account:Account){
     account.actName=account.actName.trim().toUpperCase();
     account.totAmount=Math.round(account.totAmount);
+    if(!isDefined(account.comsRate)||isNull(account.comsRate))
+    account.comsRate=0;
+
     return account;
   }
 

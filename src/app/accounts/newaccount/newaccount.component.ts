@@ -41,6 +41,7 @@ export class NewaccountComponent implements OnInit {
       id:'',
       actName: '',
       totAmount: null,
+      comsRate:0
     }
   }
 
